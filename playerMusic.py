@@ -53,7 +53,7 @@ class Music(QtWidgets.QMainWindow):
             
         self.btn_close.resize(12,12)
 
-        self.btn_list.setToolTip('Selecionar Mucs')
+        self.btn_list.setToolTip('Selecionar Musicas')
  
         self.btn_close.setStyleSheet('QToolButton{background-color:red;border:1px solid rgba(255,255,255,0);border-radius:6px;}')
  
