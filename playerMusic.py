@@ -86,7 +86,7 @@ class Music(QtWidgets.QMainWindow):
     def PlayList(self):
         user = getpass.getuser()
         direct = r"C:\Users\{}\Music".format(user)
-        self.abrir = QtWidgets.QFileDialog.getOpenFileNames(self,'Selecione o Local',direct,filter='*.wav')  
+        self.abrir = QtWidgets.QFileDialog.getOpenFileNames(self,'Selecione Suas Musicas',direct,filter='*.wav')  
         
  
     def RenderSvg(self,svg,rotate=False):
