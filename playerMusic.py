@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets,QtCore,QtGui,QtMultimedia
 import getpass
 import sys
+import os
  
 class Music(QtWidgets.QMainWindow):
     def __init__(self):
@@ -10,7 +11,6 @@ class Music(QtWidgets.QMainWindow):
         self.prox =-1
 
         self.abrir = ([],'')
- 
         
         self.svg_stop = '<?xml version="1.0" ?><svg id="blue_copy" style="enable-background:new 0 0 100 100;" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Layer_7_copy"><path d="M39.806,72.858h-8.915c-2.176,0-3.94-1.764-3.94-3.94V31.119c0-2.176,1.764-3.94,3.94-3.94h8.915   c2.176,0,3.94,1.764,3.94,3.94v37.799C43.746,71.094,41.982,72.858,39.806,72.858z"/><path d="M68.109,72.821h-8.915c-2.176,0-3.94-1.764-3.94-3.94V31.082c0-2.176,1.764-3.94,3.94-3.94h8.915   c2.176,0,3.94,1.764,3.94,3.94v37.799C72.049,71.057,70.285,72.821,68.109,72.821z"/><path d="M40.489,27.248c0.769,0.719,1.257,1.735,1.257,2.871v37.799c0,2.176-1.764,3.94-3.94,3.94h-8.915   c-0.234,0-0.46-0.03-0.683-0.069c0.704,0.658,1.643,1.069,2.683,1.069h8.915c2.176,0,3.94-1.764,3.94-3.94V31.119   C43.746,29.177,42.338,27.573,40.489,27.248z"/><path d="M68.792,27.211c0.769,0.719,1.257,1.735,1.257,2.871v37.799c0,2.176-1.764,3.94-3.94,3.94h-8.915   c-0.234,0-0.46-0.03-0.683-0.069c0.704,0.658,1.643,1.069,2.683,1.069h8.915c2.176,0,3.94-1.764,3.94-3.94V31.082   C72.049,29.14,70.641,27.535,68.792,27.211z"/><path d="M39.806,72.858h-8.915c-2.176,0-3.94-1.764-3.94-3.94V31.119   c0-2.176,1.764-3.94,3.94-3.94h8.915c2.176,0,3.94,1.764,3.94,3.94v37.799C43.746,71.094,41.982,72.858,39.806,72.858z" style="fill:none;stroke:#000000;stroke-miterlimit:10;"/><path d="M68.109,72.821h-8.915c-2.176,0-3.94-1.764-3.94-3.94V31.082   c0-2.176,1.764-3.94,3.94-3.94h8.915c2.176,0,3.94,1.764,3.94,3.94v37.799C72.049,71.057,70.285,72.821,68.109,72.821z" style="fill:none;stroke:#000000;stroke-miterlimit:10;"/></g></svg>'
         self.svg_pass = '<?xml version="1.0" ?><svg id="blue_copy" style="enable-background:new 0 0 100 100;" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Layer_8_copy_4_1_"><path d="M41.762,27.26v8.294c0,0.571,0.305,1.1,0.8,1.385l20.212,11.669c1.066,0.616,1.066,2.155,0,2.771L42.562,63.048   c-0.495,0.286-0.8,0.814-0.8,1.385v8.294c0,1.231,1.333,2.001,2.399,1.385l39.375-22.733c1.066-0.616,1.066-2.155,0-2.771   L44.161,25.875C43.095,25.259,41.762,26.029,41.762,27.26z"/><path d="M83.537,48.608L44.161,25.875c-0.193-0.112-0.395-0.164-0.597-0.19l37.972,21.923c1.066,0.616,1.066,2.155,0,2.771   L42.161,73.112c-0.1,0.058-0.205,0.092-0.308,0.126c0.308,0.914,1.401,1.398,2.308,0.874l39.375-22.733   C84.603,50.763,84.603,49.224,83.537,48.608z"/><path d="M41.762,27.26v8.294c0,0.571,0.305,1.1,0.8,1.385l20.212,11.669   c1.066,0.616,1.066,2.155,0,2.771L42.562,63.048c-0.495,0.286-0.8,0.814-0.8,1.385v8.294c0,1.231,1.333,2.001,2.399,1.385   l39.375-22.733c1.066-0.616,1.066-2.155,0-2.771L44.161,25.875C43.095,25.259,41.762,26.029,41.762,27.26z" style="fill:none;stroke:#000000;stroke-miterlimit:10;"/><path d="M14.664,27.273v8.294c0,0.571,0.305,1.1,0.8,1.385l20.212,11.669c1.066,0.616,1.066,2.155,0,2.771L15.464,63.061   c-0.495,0.286-0.8,0.814-0.8,1.385v8.294c0,1.231,1.333,2.001,2.399,1.385l39.375-22.733c1.066-0.616,1.066-2.155,0-2.771   L17.063,25.888C15.997,25.272,14.664,26.042,14.664,27.273z"/><path d="M56.438,48.621L17.063,25.888c-0.193-0.112-0.395-0.164-0.597-0.19l37.972,21.923c1.066,0.616,1.066,2.155,0,2.771   L15.063,73.125c-0.1,0.058-0.205,0.092-0.308,0.126c0.308,0.914,1.401,1.398,2.308,0.874l39.375-22.733   C57.505,50.776,57.505,49.237,56.438,48.621z"/><path d="M14.664,27.273v8.294c0,0.571,0.305,1.1,0.8,1.385l20.212,11.669   c1.066,0.616,1.066,2.155,0,2.771L15.464,63.061c-0.495,0.286-0.8,0.814-0.8,1.385v8.294c0,1.231,1.333,2.001,2.399,1.385   l39.375-22.733c1.066-0.616,1.066-2.155,0-2.771L17.063,25.888C15.997,25.272,14.664,26.042,14.664,27.273z" style="fill:none;stroke:#000000;stroke-miterlimit:10;"/></g></svg>'
@@ -31,6 +31,9 @@ class Music(QtWidgets.QMainWindow):
         self.frame.resize(350,450)
  
     def Buttons(self):
+
+        center_window = int(self.frame.size().width()/2)
+        height_window = int(self.frame.size().height())
  
         self.btn_close = QtWidgets.QToolButton(self.frame)
         self.btn_play = QtWidgets.QToolButton(self.frame)
@@ -38,10 +41,16 @@ class Music(QtWidgets.QMainWindow):
         self.btn_back = QtWidgets.QToolButton(self.frame)
         self.btn_list = QtWidgets.QToolButton(self.frame)
 
-        self.label_gif = QtWidgets.QLabel(self.frame)
-        self.movie = QtGui.QMovie('chaves.gif')
-        self.label_gif.setMovie(self.movie)
-        self.label_gif.resize(200,200)
+        if os.path.isfile('chaves.gif'):
+            self.label_gif = QtWidgets.QLabel(self.frame)
+            self.movie = QtGui.QMovie('chaves.gif')
+            self.label_gif.setMovie(self.movie)
+            self.label_gif.resize(200,200)
+            self.label_gif.move(int(center_window-self.label_gif.size().width()/2),90)
+        else:
+            self.movie = False
+
+            
 
  
         self.btn_close.resize(12,12)
@@ -62,8 +71,6 @@ class Music(QtWidgets.QMainWindow):
         self.btn_back.setIconSize(QtCore.QSize(40, 40))
         self.btn_list.setIconSize(QtCore.QSize(40, 40))
  
-        center_window = int(self.frame.size().width()/2)
-        height_window = int(self.frame.size().height())
 
         self.btn_play.move(int(center_window-self.btn_play.size().width()/2)+12,int(height_window-self.btn_play.size().height())-40)
         self.btn_pass.move(220,int(height_window-self.btn_play.size().height())-40)
@@ -75,7 +82,6 @@ class Music(QtWidgets.QMainWindow):
         self.btn_back.pressed.connect(lambda:self.PlayMusic(True,True,True))
  
         self.btn_close.move(int(self.frame.size().width()-self.btn_close.size().width())-3,5)
-        self.label_gif.move(int(center_window-self.label_gif.size().width()/2),90)
  
         self.btn_close.pressed.connect(self.close)
 
@@ -102,7 +108,8 @@ class Music(QtWidgets.QMainWindow):
                 self.prox +=1
 
         if self.prox !=0:
-            self.movie.start()
+            if self.movie:
+                self.movie.start()
 
         
         if self.abrir[0] != []:
