@@ -51,8 +51,6 @@ class Music(QtWidgets.QMainWindow):
             self.movie = False
 
             
-
- 
         self.btn_close.resize(12,12)
 
         self.btn_list.setToolTip('Selecionar Mucs')
@@ -107,9 +105,8 @@ class Music(QtWidgets.QMainWindow):
             else:
                 self.prox +=1
 
-        if self.prox !=0:
-            if self.movie:
-                self.movie.start()
+        if self.prox !=0 and self.movie:
+            self.movie.start()
 
         
         if self.abrir[0] != []:
