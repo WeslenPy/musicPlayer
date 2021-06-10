@@ -1,10 +1,13 @@
-# musicPlayer
-Player de Musica Basico
+# Music Player
+  Player de Musica Basico
 
-Instale o PyQt5 antes de iniciar o script,
-use apenas .wav, outros formatos não são suportados.
+# Tipos Suportados
 
+Somente musicas no formato .WAV (Waveform Audio File Format) são suportados.
 
-#Comandos
+# Instalação
 
-pip install -r requirements.txt
+      pip install -r requirements.txt 
+
+      
+      
