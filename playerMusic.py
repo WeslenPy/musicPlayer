@@ -91,7 +91,8 @@ class Music(QtWidgets.QMainWindow):
  
     def RenderSvg(self,svg,rotate=False):
         svg_bytes = bytearray(svg,encoding='utf-8')
-        icon = QtGui.QIcon(QtGui.QPixmap.fromImage(QtGui.QImage.fromData(svg_bytes) if rotate == False else QtGui.QImage.fromData(svg_bytes).transformed(QtGui.QTransform().rotate(180))))
+        icon = QtGui.QIcon(QtGui.QPixmap.fromImage(QtGui.QImage.fromData(svg_bytes) \
+                                                   if rotate == False else QtGui.QImage.fromData(svg_bytes).transformed(QtGui.QTransform().rotate(180))))
         return icon
         
     def PlayMusic(self,pause=None,prox=False,negative=False):
